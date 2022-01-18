@@ -49,26 +49,3 @@ var mergeKLists = function(lists) {
     
     return sort_arr;
 };
-
-    
-// let arr = lists.pop();
-// return sortList(lists, arr);
-var sortList = function(lists, arr) {
-    
-    let sort_arr = new ListNode(0);
-    if(arr) {
-        let cur = sort_arr;
-        let node = lists.pop();
-    
-        while (node !== null) {
-        }
-    }
-    
-
-    sort_arr = sort_arr.next;
-    if (lists.length) {
-        sort_arr = sortList(lists, sort_arr);
-    }
-    
-    return sort_arr;
-}
