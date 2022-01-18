@@ -16,32 +16,23 @@ var mergeKLists = function(lists) {
     let sort_arr = lists.shift() || null;
     
     while(lists.length) {
-        let arr = sort_arr;
+        let cur = sort_arr;
         let node = lists.pop();
         
-        sort_arr = new ListNode();
-        let cur = sort_arr;
-        
-        while (node && arr) {
-            if (node.val > arr.val) {
-                cur.next = new ListNode(arr.val);
-                cur = cur.next;
-                arr = arr.next;
-                if (!arr) {
-                    cur.next = node;
-                }
+        while(node && cur) {
+            if (cur.val >= node.val) {
+                cur.next = new ListNode(cur.val, cur.next);
+                cur.val = node.val;
+                node = node.next;
+            }
+            else if (!cur.next) {
+                cur.next = node;
+                node = null;
             }
             else {
-                cur.next = new ListNode(node.val);
                 cur = cur.next;
-                node = node.next;
-                if (!node) {
-                    cur.next = arr;
-                }
             }
         }
-        
-        sort_arr = sort_arr.next;
     }
     
     return sort_arr;
