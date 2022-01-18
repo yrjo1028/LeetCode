@@ -22,15 +22,13 @@ var mergeKLists = function(lists) {
         sort_arr = new ListNode();
         let cur = sort_arr;
         
-        let not_empty = true;
-        while (not_empty) {
+        while (node && arr) {
             if (node.val > arr.val) {
                 cur.next = new ListNode(arr.val);
                 cur = cur.next;
                 arr = arr.next;
                 if (!arr) {
                     cur.next = node;
-                    not_empty = false;
                 }
             }
             else {
@@ -39,7 +37,6 @@ var mergeKLists = function(lists) {
                 node = node.next;
                 if (!node) {
                     cur.next = arr;
-                    not_empty = false;
                 }
             }
         }
