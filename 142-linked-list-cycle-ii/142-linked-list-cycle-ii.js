@@ -11,28 +11,20 @@
  * @return {ListNode}
  */
 var detectCycle = function(head) {
-    if (head === null) {
-        return null;
-    }
     
     let node = null;
-    let cur = null;
-    let arr = {};
-    while (head.next) {
-        cur = arr[head.val];
-        if (cur) {
-            node = cur.find(item => item === head.next);
-            if (node) {
-                node = head;
-                head.next = null;            
+    if (head) {
+        let map = {};
+        while (head.next) {
+            if (map[head.val]) {
+                node = map[head.val].find(cur => cur === head);
+                map[head.val].push(head);
             } else {
-                arr[head.val].push(head.next);       
-                head = head.next;
+                map[head.val] = [head];
             }
-        }
-        else {
-            arr[head.val] = [head.next];
+            
             head = head.next;
+            if (node) head.next = null;
         }
     }
     
