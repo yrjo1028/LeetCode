@@ -16,12 +16,10 @@ var detectCycle = function(head) {
     }
     
     let node = null;
-    let cur = null;
     let map = {};
     while (head.next) {
-        cur = map[head.val];
-        if (cur) {
-            node = cur.find(item => item === head);
+        if (map[head.val]) {
+            node = map[head.val].find(item => item === head);
             map[head.val].push(head);
         } else {
             map[head.val] = [head];
