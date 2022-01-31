@@ -23,8 +23,11 @@ var findNearestRightNode = function(root, u) {
     let is_find = false;
     
     while (!is_find) {
-        map[++depth] = [];
-        for(let node of map[depth-1]) {
+        let arr = map[depth];
+        depth++;
+        map[depth] = [];
+        
+        for(let node of arr) {
             if (node.left) {
                 if (is_find) return node.left;
                 map[depth].push(node.left);
