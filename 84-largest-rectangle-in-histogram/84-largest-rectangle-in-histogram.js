@@ -5,14 +5,12 @@
 var largestRectangleArea = function(heights) {
     
     let lagest = 0;
-    let p = 0;
     let bf = [];
     
     while (heights.length) {
         
         let cnt = 1;
-        
-        p = heights.shift();
+        let p = heights.shift();
         heights.some(cur => {
             if (p > cur) {
                 return true;
