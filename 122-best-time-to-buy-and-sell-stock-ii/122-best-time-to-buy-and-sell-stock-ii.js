@@ -7,12 +7,10 @@ var maxProfit = function(prices) {
     let maxi = 0;
     let bf = prices[0];
     
-    prices.forEach(cur => {
-        if (cur > bf) {
-            maxi += cur - bf;   
-        }
-        bf = cur;
-    })
+    for (let p of prices) {
+        if (p > bf) maxi += p - bf;
+        bf = p;
+    }
     
     return maxi;
 };
