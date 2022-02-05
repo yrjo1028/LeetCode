@@ -5,23 +5,14 @@
 var maxProfit = function(prices) {
     
     let maxi = 0;
+    let bf = prices[0];
     
-    if (prices.length) {
-        let hold = prices.shift();
-        let target = hold;
-        
-        prices.forEach(p => {
-            if (p >= target) {
-                target = p;
-            } else {
-                maxi += target - hold;
-                hold = p;
-                target = p;
-            }
-        });
-        
-        maxi += target - hold
-    }
+    prices.forEach(cur => {
+        if (cur > bf) {
+            maxi += cur - bf;   
+        }
+        bf = cur;
+    })
     
     return maxi;
 };
