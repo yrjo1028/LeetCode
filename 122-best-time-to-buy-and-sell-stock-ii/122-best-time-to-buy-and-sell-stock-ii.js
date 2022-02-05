@@ -4,22 +4,24 @@
  */
 var maxProfit = function(prices) {
     
-    if (2 > prices.length) return 0;
-    
     let maxi = 0;
-    let hold = 0;
-    let target = 0;
     
-    while (prices.length) {
-        hold = prices.shift();
-        target = hold;
+    if (prices.length) {
+        let hold = prices.shift();
+        let target = hold;
         
-        while (prices.length && prices[0] >= target) {
-            target = prices.shift();
-        }
+        prices.forEach(p => {
+            if (p >= target) {
+                target = p;
+            } else {
+                maxi += target - hold;
+                hold = p;
+                target = p;
+            }
+        });
         
-        maxi = maxi + (target - hold);
-    }    
+        maxi += target - hold
+    }
     
-    return maxi
+    return maxi;
 };
