@@ -10,35 +10,31 @@
  * @param {TreeNode} root
  * @return {number}
  */
+
+let lagest = null;
 var maxPathSum = function(root) {
-    
-    let { sum, lagest } = checkSum(root);
+    lagest = root.val;
+    checkSum(root);
     return lagest;
     
 };
 
 var checkSum = function (root) {
+    if (!root) return -10000;
     
-    let sum = -1000;
-    let lagest = -1000;
+    let l_sum = checkSum(root.left);
+    let r_sum = checkSum(root.right);
+    let sum = Math.max(
+        root.val,
+        l_sum + root.val,
+        r_sum + root.val,
+    );
+
+    lagest = Math.max(
+        sum,
+        root.val + l_sum + r_sum,
+        lagest,
+    );
     
-    if (root) {
-        let { sum: l_sum, lagest: l_lagest } = checkSum(root.left);
-        let { sum: r_sum, lagest: r_lagest } = checkSum(root.right);
-        
-        sum = Math.max(
-            root.val,
-            l_sum + root.val,
-            r_sum + root.val,
-        );
-        
-        lagest = Math.max(
-            sum,
-            root.val + l_sum + r_sum,
-            l_lagest,
-            r_lagest,
-        );
-    }
-    
-    return { sum, lagest };
+    return sum;
 }
