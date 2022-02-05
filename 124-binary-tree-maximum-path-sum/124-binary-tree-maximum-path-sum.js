@@ -13,33 +13,32 @@
 var maxPathSum = function(root) {
     
     let { sum, lagest } = checkSum(root);
-    return (sum > lagest) ? sum : lagest ;
+    return lagest;
     
 };
 
 var checkSum = function (root) {
     
-    let sum = null;
-    let lagest = null;
+    let sum = -1000;
+    let lagest = -1000;
     
     if (root) {
         let { sum: l_sum, lagest: l_lagest } = checkSum(root.left);
         let { sum: r_sum, lagest: r_lagest } = checkSum(root.right);
         
-        sum = root.val;
-        let left_sum = (l_sum) ? l_sum + sum : sum;
-        let right_sum = (r_sum) ? r_sum + sum : sum;
-        if (left_sum > right_sum) {
-            if (left_sum > sum) sum += l_sum;
-        } else {
-            if (right_sum > sum) sum += r_sum;
-        }
+        sum = Math.max(
+            root.val,
+            l_sum + root.val,
+            r_sum + root.val,
+        );
         
-        lagest = root.val + l_sum + r_sum;
-        if (sum > lagest) lagest = sum;
-        if (l_lagest !== null && l_lagest > lagest) lagest = l_lagest;
-        if (r_lagest !== null && r_lagest > lagest) lagest = r_lagest;
-                
+        lagest = Math.max(
+            sum,
+            root.val,
+            root.val + l_sum + r_sum,
+            l_lagest,
+            r_lagest,
+        );
     }
     
     return { sum, lagest };
