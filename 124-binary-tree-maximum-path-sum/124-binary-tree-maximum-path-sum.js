@@ -34,7 +34,6 @@ var checkSum = function (root) {
         
         lagest = Math.max(
             sum,
-            root.val,
             root.val + l_sum + r_sum,
             l_lagest,
             r_lagest,
