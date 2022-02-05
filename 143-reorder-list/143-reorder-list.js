@@ -12,22 +12,23 @@
 var reorderList = function(head) {
     
     let map = [];
+    let list = head;
+    
     while (head) {
-        map.push(head);
+        map.push(head.val);
         head = head.next;
     }
     
-    let list = map.shift();
     head = list;
-    while (map.length) {
-        head.next = map.pop();
+    while (head) {
+        head.val = map.shift();
         head = head.next;
+        
         if (map.length) {
-            head.next = map.shift();
+            head.val = map.pop();
             head = head.next;
         }
     }
 
-    head.next = null;
     return list;
 };
