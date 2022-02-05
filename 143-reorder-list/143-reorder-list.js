@@ -13,7 +13,6 @@ var reorderList = function(head) {
     
     let map = [];
     let list = head;
-    
     while (head) {
         map.push(head.val);
         head = head.next;
