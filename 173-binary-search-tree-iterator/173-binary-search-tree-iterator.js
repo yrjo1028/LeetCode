@@ -11,21 +11,15 @@
  */
 var BSTIterator = function(root) {
     this.map = [];
-    while (root) {
-        this.map.push(root);
-        root = root.left;
-    }
+    this.onStack(root);
 };
 
 /**
  * @return {number}
  */
 BSTIterator.prototype.next = function() {
-    let { val, right: next } = this.map.pop();
-    while (next) {
-        this.map.push(next);
-        next = next.left;
-    }
+    let { val, right } = this.map.pop();
+    this.onStack(right);
     return val;
 };
 
@@ -35,6 +29,17 @@ BSTIterator.prototype.next = function() {
 BSTIterator.prototype.hasNext = function() {
     return this.map.length > 0;
 };
+
+
+/**
+ * @not return
+ */
+BSTIterator.prototype.onStack = function(next) {
+    while (next) {
+        this.map.push(next);
+        next = next.left;
+    }
+}
 
 /** 
  * Your BSTIterator object will be instantiated and called as such:
