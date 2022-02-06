@@ -21,16 +21,12 @@ var BSTIterator = function(root) {
  * @return {number}
  */
 BSTIterator.prototype.next = function() {
-    if (this.hasNext()) {
-        let { val, right: next } = this.map.pop();
-        while (next) {
-            this.map.push(next);
-            next = next.left;
-        }
-        return val;
+    let { val, right: next } = this.map.pop();
+    while (next) {
+        this.map.push(next);
+        next = next.left;
     }
-    
-    return undefined;
+    return val;
 };
 
 /**
