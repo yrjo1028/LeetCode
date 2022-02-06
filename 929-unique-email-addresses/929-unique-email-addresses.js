@@ -6,12 +6,13 @@ var numUniqueEmails = function(emails) {
 
     let map = [];
     for (let mail of emails) {
-        let domain = mail.substring(mail.indexOf("@"));
-        let name = mail.substring(0, mail.indexOf("@")).replace(/\./gi, "");
-        if (name.indexOf("+") > 0) {
-            name = name.substring(0, name.indexOf("+"));
-        }
-        if (!map.includes(name + domain)) map.push(name + domain);
+        let arr = mail.split("@");
+        arr[0] = arr[0].replace(/\++.*/, "");
+        arr[0] = arr[0].replace(/\./g, "");
+        mail = arr[0] + '@' + arr[1];
+        
+        console.log(mail);
+        if (!map.includes(mail)) map.push(mail);
     }
     
     return map.length;
