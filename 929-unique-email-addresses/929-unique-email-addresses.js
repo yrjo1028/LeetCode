@@ -5,23 +5,14 @@
 var numUniqueEmails = function(emails) {
 
     let map = [];
-    let count = 0;
-    
     for (let mail of emails) {
-        let arr = mail.split('@');
-        let domain = arr[1];
-        let name = replace_name(arr[0]);
-        if (!map[domain]) map[domain] = [];
-        if (!map[domain].includes(name)) {
-            map[domain].push(name)
-            count++;
-        };
+        let domain = mail.substring(mail.indexOf("@"));
+        let name = mail.substring(0, mail.indexOf("@")).replace(/\./gi, "");
+        if (name.indexOf("+") > 0) {
+            name = name.substring(0, name.indexOf("+"));
+        }
+        if (!map.includes(name + domain)) map.push(name + domain);
     }
     
-    return count;
+    return map.length;
 };
-
-var replace_name = function (name) {
-    let arr = name.split("+");
-    return arr[0].replace(/\./gi, "");
-}
