@@ -5,18 +5,17 @@
  */
 var numKLenSubstrNoRepeats = function(s, k) {
     
-    let map = [];
+    let arr = [];
     let ans = 0;
     
     for (let i = 0; i < s.length; i++) {
-        let cur = s[i];
-        while(map.includes(cur)) {
-            map.shift();
+        while(arr.includes(s[i])) {
+            arr.shift();
         }
         
-        map.push(cur);
-        if (map.length > k) map.shift();
-        if (map.length === k) ans ++;
+        arr.push(s[i]);
+        if (arr.length > k) arr.shift();
+        if (arr.length === k) ans ++;
     }
     
     return ans;
