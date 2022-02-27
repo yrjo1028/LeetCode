@@ -4,6 +4,7 @@
  */
 var fixedPoint = function(arr) {
     let ans = -1;
+    
     arr.some((n, i) => {
         if (n === i) {
             ans = i;
