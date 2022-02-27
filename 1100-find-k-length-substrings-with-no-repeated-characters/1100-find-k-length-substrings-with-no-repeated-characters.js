@@ -5,22 +5,19 @@
  */
 var numKLenSubstrNoRepeats = function(s, k) {
     
-    let p = k;
+    let map = [];
     let ans = 0;
     
-    while (s.length >= p) {
-        
-        let map = {};
-        
-        let sub = s.substring(p-k, p);
-        let is_dup = sub.split('').some(cur => {
-            if (map[cur]) return true;
-            map[cur] = 1;
-        });
-        
-        if (is_dup === false) ans++;
-        p++;
-    }
+    let arr = s.split('');
+    arr.forEach((cur, idx) => {
+        while(map.includes(cur)) {
+            map.shift();
+        }
+            
+        map.push(cur);
+        if (map.length > k) map.shift();
+        if (map.length === k) ans ++;
+    });
     
     return ans;
 };
