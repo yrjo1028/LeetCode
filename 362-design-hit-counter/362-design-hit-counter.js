@@ -1,6 +1,6 @@
 
 var HitCounter = function() {
-    this.map = [];
+    this.arr = [];
 };
 
 /** 
@@ -8,7 +8,7 @@ var HitCounter = function() {
  * @return {void}
  */
 HitCounter.prototype.hit = function(timestamp) {
-    this.map.push(timestamp);
+    this.arr.push(timestamp);
 };
 
 /** 
@@ -16,7 +16,7 @@ HitCounter.prototype.hit = function(timestamp) {
  * @return {number}
  */
 HitCounter.prototype.getHits = function(timestamp) {
-    let hit = this.map.filter(t => t > timestamp - 300);
+    let hit = this.arr.filter(t => t > timestamp - 300);
     return hit.length;
 };
 
