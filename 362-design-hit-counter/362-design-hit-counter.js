@@ -8,7 +8,7 @@ var HitCounter = function() {
  * @return {void}
  */
 HitCounter.prototype.hit = function(timestamp) {
-    this.arr.push(timestamp);
+    this.arr.unshift(timestamp);
 };
 
 /** 
@@ -16,8 +16,12 @@ HitCounter.prototype.hit = function(timestamp) {
  * @return {number}
  */
 HitCounter.prototype.getHits = function(timestamp) {
-    let hit = this.arr.filter(t => t > timestamp - 300);
-    return hit.length;
+    let hit = 0;
+    this.arr.some(t => {
+        if (timestamp - 300 >= t) return;
+        hit++;
+    })
+    return hit;
 };
 
 /** 
