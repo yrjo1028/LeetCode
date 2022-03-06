@@ -12,10 +12,10 @@ var findBuildings = function(heights) {
     for (let i = 1; i <= n; i++) {
         if (heights[n - i] > taller) {
             taller = heights[n - i];
-            ans.unshift(n - i);
+            ans.push(n - i);
         }
     }
     
-    return ans;
+    return ans.reverse();
     
 };
