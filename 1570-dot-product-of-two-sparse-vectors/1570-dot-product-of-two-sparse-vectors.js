@@ -12,18 +12,11 @@ var SparseVector = function(nums) {
  * @return {number}
  */
 SparseVector.prototype.dotProduct = function(vec) {
-    
     let ans = 0;
-    
     vec.nums.forEach((n, i) => {
        ans = ans + (n * this.nums[i]); 
     });
-    
     return ans;
-    
-    
-    console.log(this.nums);
-    console.log(vec.nums);
 };
 
 // Your SparseVector object will be instantiated and called as such:
