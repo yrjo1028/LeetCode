@@ -14,20 +14,14 @@
  */
 var lowestCommonAncestor = function(p, q) {
     
-    const arr = [];
-    while(p) {
-        if (p === q) return p;
-        arr.push(p);
-        p = p.parent;
+    let a = p;
+    let b = q;
+    
+    while (a != b) {
+        a = (a) ? a.parent : q;
+        b = (b) ? b.parent : p;
     }
     
-    while (q) {
-        for (let node of arr) {
-            if (node.val === q.val) return node;
-        }
-        
-        q = q.parent;
-    }
-    
+    return a;
     
 };
