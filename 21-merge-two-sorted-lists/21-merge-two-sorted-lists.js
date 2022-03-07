@@ -23,11 +23,11 @@ var mergeTwoLists = function(list1, list2) {
         }
         
         if (list1.val > list2.val) { 
-            ans = new ListNode(list2.val);
+            ans = list2;
             list2 = list2.next;
         }
         else {
-            ans = new ListNode(list1.val);
+            ans = list1;
             list1 = list1.next;
         }
         
@@ -35,12 +35,12 @@ var mergeTwoLists = function(list1, list2) {
         while (list1 || list2) {
             if (list1 && list2) {
                 if (list1.val > list2.val) {
-                    p.next = new ListNode(list2.val);
+                    p.next = list2;
                     p = p.next;
                     list2 = list2.next;
                 }
                 else {
-                    p.next = new ListNode(list1.val);
+                    p.next = list1;
                     p = p.next;
                     list1 = list1.next;
                 }
