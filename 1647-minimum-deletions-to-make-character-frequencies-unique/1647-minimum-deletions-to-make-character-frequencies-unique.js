@@ -4,34 +4,23 @@
  */
 var minDeletions = function(s) {
     
-    let ans = 0;
-    
-    let map = {}
-    for (let i=0; i < s.length; i++) {
-        let key = s[i];
-        if (map[key] == undefined) map[key] = 0;
-        map[key]++;
+    let freqList = new Array(26).fill(0);
+    for (let i = 0; i < s.length; i++) {
+        freqList[s.charCodeAt(i) - 97]++;
     }
     
-    let emptys = [];
-    let ex = 0;
-    let arr = Object.values(map).sort((a,b) => a-b);
-    
-    arr.forEach(num => {
-        if (ex === num) {
-            // 삭제처리
-            let empty = (emptys.length) ? emptys.pop() : 0;
-            ans = ans + (num - empty);
+    let ans = 0;
+    let set = new Set();
+    for (let i = 0; i < 26; i++) {
+        let cur = freqList[i];
+        if (cur === 0) continue;
+        
+        while (set.has(cur) && cur > 0) {
+            cur--;
         }
-        else {
-            ex++;
-            while (num > ex) {
-                emptys.push(ex);
-                ex++;
-            }
-        }
-        ex = num;
-    });
+        set.add(cur);
+        ans = ans + (freqList[i] - cur);
+    }
     
     return ans;
     
