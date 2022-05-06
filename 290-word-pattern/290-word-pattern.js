@@ -5,36 +5,30 @@
  */
 var wordPattern = function(pattern, s) {
     
-    const p_arr = pattern.split('');
-    const s_arr = s.split(' ');
-    
-    let is_match = true;
+    let anser = true;
     let map = {};
-    let p_map = {};
+    let rmap = {};
     
-    s_arr.forEach((cur, idx) => {
-        let p = p_arr[idx];
+    let list = s.split(' ');
+    if (pattern.length !== list.length) {
+        return false;
+    }
+    
+    for (let i = 0; i < pattern.length; i++) {
+        const key = pattern[i];
+        const val = list[i];
         
-        if (map[cur] && map[cur] !== p) {
-            is_match = false;
+        if (map[key] && map[key] !== val) {
             return false;
         }
         
-        if (p_map[p] && p_map[p] !== cur) {
-            is_match = false;
+        if (rmap[val] && rmap[val] !== key) {
             return false;
         }
         
-        map[cur] = p;
-        p_map[p] = cur;
-    });
+        map[key] = val;
+        rmap[val] = key
+    }
     
-    p_arr.forEach((cur, idx) => {
-       if(!p_map[cur]) {
-           is_match = false;
-           return false;
-       }
-    });
-    
-    return is_match;
+    return anser;
 };
