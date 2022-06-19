@@ -6,7 +6,6 @@ var uniqueLetterString = function(s) {
     const lastPositions = new Array(26).fill(0);
     const contributions = new Array(26).fill(0);
     
-    let i = 0;
     let answer = 0;
     let cur = 0;
     
