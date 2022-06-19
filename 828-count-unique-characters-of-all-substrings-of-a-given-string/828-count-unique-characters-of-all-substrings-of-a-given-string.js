@@ -14,9 +14,8 @@ var uniqueLetterString = function(s) {
         const charIndex = i + 1;
         const code = s[i].charCodeAt() - 65;
         const add = charIndex - lastPositions[code];
-        const minus = contributions[code];
         
-        cur = cur + add - minus;
+        cur = cur + add - contributions[code];
         answer += cur;
         
         contributions[code] = add;
