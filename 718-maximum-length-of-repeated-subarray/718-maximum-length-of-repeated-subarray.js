@@ -21,6 +21,5 @@ var findLength = function(nums1, nums2) {
         }
     }
     
-    console.log(map);
     return maxLength;
 };
