@@ -16,10 +16,8 @@ var minSubArrayLen = function(target, nums) {
         }
         
         while (sum >= target) {
-            if (sum >= target) {
-                const length = p1 - p2;
-                minLength = Math.min(length, minLength);
-            }
+            const length = p1 - p2;
+            minLength = Math.min(length, minLength);
             
             p2++;
             sum -= nums[p2];
